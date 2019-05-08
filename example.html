@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <script type="text/javascript" src="util.js"></script>
+  <link rel="stylesheet" href="tree.css">
+    <script src="tree.js"></script>
+<script src="favorites.js"></script>
+
+<script>
+
+function initPage(){
+
+//initTree(document.getElementById('tree'));
+
+}
+
+</script>
+
+
+<style>
+
+body{
+    margin: 0;
+}
+
+#cMenu{
+position: absolute;
+background: #F2F2F2;
+border: 1px solid #ccc;
+list-style-type : none;
+text-decoration: none;
+display: none;
+cursor: default;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+#cMenu ul{
+list-style: none;
+padding-left: 0px;
+padding-top: 0px;
+margin: 0;
+}
+
+#cMenu li{
+list-style-type : none;
+padding-left: 20px;
+padding-right: 20px;
+font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+font-size: 10pt;
+ line-height: 1.8;
+ margin: 1px;
+}
+
+#cMenu li:hover{
+background: #91C9F7;
+}
+
+#editItem{
+position: absolute;
+background: #F2F2F2;
+border: 2px solid #ccc;
+padding: 2px;
+display: none;
+z-index: 1000;
+}
+
+#URLzone{
+display: none;
+}
+
+.formItem{
+display: inline-block;
+padding: 0;
+border: none;
+}
+
+.char_icon{
+font-size: 1.1em;
+font-weight: bold;
+text-decoration: none;
+cursor: pointer;
+text-shadow: 2px 2px #999;
+padding: 0;
+}
+
+#pFavorites{
+position: relative;
+}
+
+#titre{
+position: absolute;
+top: 0px;
+margin-left: 40%;
+}
+
+#titre h2{ 
+margin: 0;
+}
+
+</style>  
+
+  
+</head>
+<body onload="initPage();">
+  
+<div id="pFavorites">
+  <div id="tree"></div>
+<div id="titre"><h2>Favoris</h2></div>
+  <div id="cMenu">
+  <ul>
+  <li onclick="moveItem(true)">Déplacer &#x25B2;</li>
+  <li onclick="moveItem()">Déplacer &#x25BC;</li>
+  <li onclick="editItem(1)">Éditer</li>
+  <li onclick="editItem(0,2)">Ajouter un fichier</li>
+  <li onclick="editItem(0,1)">Ajouter un dossier</li>
+  <li onclick="removeItem()">Supprimer</li>
+  <li onclick="saveTree()">Enregistrer</li>
+  </ul>
+  </div>
+  
+  <div id="editItem">
+  <form id="FeditItem" onsubmit="return false;">
+  <label for="txtCaption">Caption:</label></br>
+  <input id="txtCaption" name="txtCaption" size="25" type="text" maxlength="95" />
+	<input type="submit" class="char_icon" onclick="saveFile(this.form);" value="&#9989;">
+	<input type="button" class="char_icon" onclick="closeEdit();"  value="&#9940;">
+  </br>
+  <div id="URLzone">
+  <label for="txtURL">URL:</label></br>
+  <input id="txtURL" name="txtURL" size="35" type="text" maxlength="500" />
+  <input id="upd" name="upd" type="hidden" value="0" />
+  <input id="type" name="type" type="hidden" value="0" />
+  </form>
+  </div>
+  </div>    
+</div>     
+
+</body>
+</html>
