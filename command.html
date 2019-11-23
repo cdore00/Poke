@@ -80,13 +80,17 @@ if (arrExp){
 	arrExp[arrExp.length] = exp;
 }
 	refreshComboList(fopo.oComboList);
+	showURL(newLoc);
+	localStorage.setItem("pokeList", JSON.stringify(arrExp));
+}
+
+function showURL(URL){
 	if (!window.opener){
 		if (oWin)
 			oWin.close();
 		oWin = window.open("", "pokeNewWin", "location=0");
-		//setTimeout(showPoke(), 3000);
 	}
-	oWin.location = newLoc;
+	oWin.location = URL;
 }
 
 function refreshComboList(oCombo){
@@ -318,7 +322,7 @@ margin: 0;
 
 </head>
 
-<body onload="initPage()"  onunload="saveContext()">
+<body onload="initPage()" >
 <div>
 
 

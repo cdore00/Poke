@@ -2,7 +2,8 @@
 'use strict';
 
 var oWin, et;
-var	structure=[{"name":"file 1","URL":"Test URL"},{"name":"file 2"},{"name":"Dossier","open":false,"type":"folder","selected":true,"children":[{"name":"file 1/1"},{"name":"file 1/2"},{"name":"folder 1/1","type":"folder","children":[{"name":"file 1/1"},{"name":"folder 1/1/1","type":"folder","children":[{"name":"folder 1/1/1/1","type":"folder","children":[{"name":"Test2","URL":""},{"name":"file 1/1/1/1/1"},{"name":"file 1/1/1/1/2"}]}]}]}]}]
+var	structure=[{"name":"Google","URL":"https://www.google.ca/"},{"name":"Yahoo","URL":"https://yahoo.com/"},{"name":"Dossier","open":false,"type":"folder","selected":true,"children":[{"name":"file 1/1"},{"name":"file 1/2"},{"name":"folder 1/1","type":"folder","children":[{"name":"file 1/1"},{"name":"folder 1/1/1","type":"folder","children":[{"name":"folder 1/1/1/1","type":"folder","children":[{"name":"Test2","URL":""},{"name":"file 1/1/1/1/1"},{"name":"file 1/1/1/1/2"}]}]}]}]}] ;
+//[{"name":"file 1","URL":"Test URL"},{"name":"file 2"},{"name":"Dossier","open":false,"type":"folder","selected":true,"children":[{"name":"file 1/1"},{"name":"file 1/2"},{"name":"folder 1/1","type":"folder","children":[{"name":"file 1/1"},{"name":"folder 1/1/1","type":"folder","children":[{"name":"folder 1/1/1/1","type":"folder","children":[{"name":"Test2","URL":""},{"name":"file 1/1/1/1/1"},{"name":"file 1/1/1/1/2"}]}]}]}]}]
 
 var listItem = localStorage.getItem("pokeFavorites");
 if (listItem)
@@ -17,7 +18,9 @@ class editTree{
 	  e.node = node;
 	});
 	this.tree.json(jsonTree);
+	this.tree.on('select', e => selectItem(e));
 	}
+	
    active(){
 	   return this.tree.active();
    }
@@ -175,7 +178,7 @@ function initTree(divTree){
 	et = new editTree(divTree, structure);
 	contextMenu(true);
 }
-//var et = new editTree(document.getElementById('tree'), structure);
+
 
 function doAction(e){
 	if (!window.opener){
@@ -188,8 +191,14 @@ function doAction(e){
 
 function selectItem(e){
 //if (!tree.isFolder(e))
-
+//setTimeout(showPoke(), 3000);
+setTimeout(function(){
+if (!onMenu())
+	if (e.node && e.node.URL)
+		showURL(e.node.URL);
 console.log('select', e);
+}, 300);
+
 }
 
 function editItem(action, fileFolder){
@@ -223,9 +232,14 @@ contextMenu(true);
 }
 
 function checkMenu(){
-var cMenu = document.getElementById('cMenu');
-	if (cMenu.style.display == "inherit")
+var cMenu = onMenu();
+	if (cMenu)
 		cMenu.style.display = "none";
+}
+
+function onMenu(){
+var cMenu = document.getElementById('cMenu');
+	return (cMenu.style.display == "inherit") ? cMenu:false;
 }
 
 function onEdit(){
@@ -254,7 +268,6 @@ if (el){
     return false	
 }
 
-//contextMenu(true);
 
 
 
