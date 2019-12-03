@@ -257,11 +257,15 @@ if (on){
 
 function contextMenuFct(ev){
 var cMenu = document.getElementById('cMenu');
+var divFav = document.getElementById('divFav');
 ev.preventDefault();
 var el = et.active();
 if (el){
 	var xy = getOffset(el);
-	cMenu.style.top = xy.top + "px";
+	if (xy.top + cMenu.offsetHeight < divFav.offsetHeight)
+		cMenu.style.top = xy.top + "px";
+	else
+		cMenu.style.top = (divFav.offsetHeight - cMenu.offsetHeight) + "px"
 	cMenu.style.left = (xy.left + el.offsetWidth) + "px";
 	cMenu.style.display = "inherit";	
 }

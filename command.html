@@ -159,6 +159,7 @@ function showFavorite(){
 var divFav = document.getElementById('divFav');
 var divPoke = document.getElementById('divPoke');
 divFav.style.display = "inherit";
+divFav.style.height = window.innerHeight + "px";
 divPoke.style.visibility = "hidden";
 return false;
 }
@@ -225,6 +226,10 @@ height: 100%;
 zindex:10;
 text-align: center;
 /*background: #ccc;*/
+}
+
+#divFav{
+overflow:scroll;
 }
 
 .divLabel, .divData{
